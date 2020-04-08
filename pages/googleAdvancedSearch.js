@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://www.google.com/advanced_search',
+    url: 'https://www.google.com/advanced_search?hl=en',
     elements: {
         mainQueryInputSelector : 'input[name="as_q"]',
         languagePickerSelector : '#lr_button',
