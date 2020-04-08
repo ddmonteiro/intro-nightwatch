@@ -3,27 +3,20 @@ module.exports = {
     'Google advanced search: COVID-19'(browser) {
         
         const mainQueryValue = 'COVID-19';
-
-        const mainQueryInputSelector = 'input[name="as_q"]';
-        const languagePickerSelector = '#lr_button';
-        const languagePickerValueSelector = '.goog-menuitem[value="lang_pt"]';
-        const lastUpdateDropdownSelector = '#as_qdr_button';
-        const lastUpdateDropdownValueSelector = '.goog-menuitem[value="d"]';
-        const submitButtonSelector = '.jfk-button[type="submit"]';
+        
+        const page = browser.page.googleAdvancedSearch();
 
         const resultsPageQuerySelector = `input[name="q"][type="text"][value="${mainQueryValue}"]`;
 
         const resultsPageLanguageSelector = '[aria-label="Search Portuguese pages"]';
         const resultsLasteUpdatedSelector = '[aria-label="Past 24 hours"]';
 
-        browser
-            .url('https://www.google.com/advanced_search?')
-            .setValue(mainQueryInputSelector, 'COVID-19')
-            .click(languagePickerSelector)
-            .click(languagePickerValueSelector)
-            .click(lastUpdateDropdownSelector)
-            .click(lastUpdateDropdownValueSelector)
-            .click(submitButtonSelector)
+        page
+            .navigate()
+            .setQuery(mainQueryValue)
+            .selectFilter('@languagePickerSelector', 'lang_pt')
+            .selectFilter('@lastUpdateDropdownSelector', 'd')
+            .submitSearch()
             .assert.urlContains('as_q=COVID-19')
             .assert.urlContains('lr=lang_pt')
             .assert.urlContains('as_qdr=d')
