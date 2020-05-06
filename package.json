@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "nightwatch",
-    "debug": "node --inspect-brk node_modules/.bin/nightwatch"
+    "debug": "node --inspect-brk node_modules/.bin/nightwatch",
+    "test:browserstack": "nightwatch -c nightwatch.browserstack.conf.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "chromedriver": "^80.0.2",
     "nightwatch": "^1.3.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nightwatch-video-recorder": "^3.0.0",
+    "dotenv": "^7.0.0"
+  }
 }
